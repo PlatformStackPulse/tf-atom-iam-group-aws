@@ -1,7 +1,9 @@
-# -----------------------------------------------------------------------------
-# Module-Specific Variables
-#
-# Note: Standard labeling variables (enabled, namespace, tenant, environment,
-# stage, name, delimiter, attributes, tags, label_order, etc.) are provided
-# by context.tf via the tf-label module.
-# -----------------------------------------------------------------------------
+variable "path" {
+  description = "Path for the IAM group"
+  type        = string
+  default     = "/"
+  validation {
+    condition     = can(regex("^/", var.path))
+    error_message = "path must start with /."
+  }
+}
